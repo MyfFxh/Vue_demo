@@ -14,11 +14,14 @@ import Cookies from "js-cookie";
  * 优化CSS可用性：用一些小技巧
  * 解释代码：用注释和详细的文档来
  */
-import "normalize.css";
+import "normalize.css/normalize.css";
 import Element from "element-ui";
 import "./styles/element-variables.scss";
 
 import "@/styles/index.scss"; // 引入 全局css
+
+import './permission'
+
 Vue.use(Element, {
   size: Cookies.get("size") || "medium", // 设置ElementUI默认尺寸
   // 这里的cookie是方便之后在页面上可调节尺寸的大小
@@ -34,9 +37,10 @@ Vue.use(Element, {
  */
 // if (process.env.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV )
-  const { mockXHR } = require("./mock");
+  const { mockXHR } = require("../mock");
   mockXHR();
 //}
+
 
 Vue.config.productionTip = false;
 

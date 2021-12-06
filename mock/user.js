@@ -25,7 +25,7 @@ const users = {
 };
 
 module.exports = [
-  // user login  ??? 如何配置mock
+  // user login  
   {
     url: "/vue-element-admin/user/login",
     type: "post",

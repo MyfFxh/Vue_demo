@@ -39,14 +39,13 @@
         <span class="svg-container">
           <i class="el-icon-lock" />
         </span>
-        <!--??? 为什么要加key，无用
+        <!--
             @keyup(键盘事件)是按键松开，当指定的按键松开会触发的事件
             @keyup.enter	回车按键松开
             @blur 是当元素失去焦点时所触发的事件
             tabindex：输入框的tabindex--- 指定 tab 键顺序
           -->
         <el-input
-          :key="passwordType"
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
@@ -56,12 +55,6 @@
           show-password
           @keyup.enter.native="handleLogin"
         />
-        <!-- <span
-          class="showpwd"
-          @click="showPwd"
-        >
-          <i :class="passwordType === 'password' ? 'el-icon-turn-off' : 'el-icon-open'" />
-        </span> -->
       </el-form-item>
 
       <el-button
@@ -117,7 +110,13 @@ export default {
   created() {
     // window.addEventListener('storage', this.afterQRScan)
   },
-  mounted() {},
+  mounted() {
+    if (this.loginForm.username === '') {
+      this.$refs.username.focus()
+    } else if (this.loginForm.password === '') {
+      this.$refs.password.focus()
+    }
+  },
   destroyed() {
     // window.removeEventListener('storage', this.afterQRScan)
   },

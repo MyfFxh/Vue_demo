@@ -20,6 +20,11 @@ const constantRoutes = [
     component: () => import("@/views/login/index"),
   },
   {
+    path: '/404',
+    component: () => import('@/views/error-page/404'),
+    hidden: true //hidden 是否需要展示该路由,是否渲染该路由入口
+  },
+  {
     path: "/",
     component: Layout,
     redirect: "/dashboard",
@@ -32,6 +37,7 @@ const constantRoutes = [
       },
     ],
   },
+  { path: '*', redirect: '/404', hidden: true }
 ];
 
 // 有权限要求的页面

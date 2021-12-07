@@ -1,7 +1,9 @@
 const getters = {
+  sidebar: (state) => state.app.sidebar,
   size: (state) => state.app.size,
   token: (state) => state.user.token,
   name: (state) => state.user.name,
+  routes: (state) => state.permission.routes
 };
 export default getters;
 

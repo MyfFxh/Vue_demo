@@ -1,10 +1,10 @@
 /*
  * @Date: 2021-12-03 16:31:51
- * @LastEditTime: 2021-12-03 16:58:20
+ * @LastEditTime: 2021-12-07 14:57:27
  * @FilePath: \vue-admin-demo\src\store\modules\user.js
  */
 
-import { getToken, setToken } from "@/utils/auth";
+import { getToken, setToken, removeToken } from "@/utils/auth";
 import { login } from "@/api/user";
 
 const state = {
@@ -72,6 +72,17 @@ const actions = {
         });
     });
   },
+
+  /**
+   * 更新 Token
+   */
+  resetToken({commit}) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '')
+      removeToken()
+      resolve()
+    })
+  }
 };
 
 /**

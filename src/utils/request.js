@@ -1,11 +1,11 @@
 /*
  * @Date: 2021-12-03 16:57:00
- * @LastEditTime: 2021-12-03 16:57:00
+ * @LastEditTime: 2021-12-06 15:58:45
  * @FilePath: \vue-admin-demo\src\utils\request.js
  */
 
 /**
- * 对request进行标准化
+ * 封装 axios
  */
 import axios from "axios";
 import { MessageBox, Message } from "element-ui";
@@ -13,6 +13,7 @@ import store from "@/store";
 import { getToken } from "@/utils/auth";
 
 // create an axios instance
+// 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
@@ -20,6 +21,7 @@ const service = axios.create({
 });
 
 // request interceptor
+// request拦截器
 service.interceptors.request.use(
   (config) => {
     // do something before request is sent
@@ -28,6 +30,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
+      // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
       config.headers["X-Token"] = getToken();
     }
     return config;
@@ -40,11 +43,16 @@ service.interceptors.request.use(
 );
 
 // response interceptor
+// respone拦截器
 service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
    */
+  /**
+  * 下面的注释为通过response自定义code来标示请求状态，当code返回如下情况为权限有问题，登出并返回到登录页
+  * 如通过xmlhttprequest 状态码标识 逻辑可写在下面error中
+  */
 
   /**
    * Determine the request status by custom code
